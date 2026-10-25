@@ -358,7 +358,9 @@ test.describe.serial(
       });
 
       await test.step('Pass the proxy step', async () => {
-        await expect(page.getByRole('heading', { name: 'Proxy' })).toBeVisible();
+        await expect(
+          page.getByRole('heading', { name: 'Proxy' })
+        ).toBeVisible();
         await moveForward(page);
       });
 

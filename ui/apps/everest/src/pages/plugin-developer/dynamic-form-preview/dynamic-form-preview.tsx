@@ -29,9 +29,9 @@ import { preprocessSchema } from 'components/ui-generator/utils/preprocess/prepr
 
 export type DynamicFormProps = {
   schema: TopologyUISchemas;
-  // Namespace used to resolve data-source providers (e.g. storage classes,
-  // monitoring configs). Without it, provider-backed fields stay disabled and
-  // render no options. See the namespace selector in UIGeneratorBuilder.
+  // Namespace used to resolve data-source providers (e.g. storage classes).
+  // Without it, provider-backed fields stay disabled and render no options.
+  // See the namespace selector in UIGeneratorBuilder.
   namespace?: string;
 };
 

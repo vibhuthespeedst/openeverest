@@ -142,7 +142,7 @@ export const UIGeneratorBuilder = () => {
             value={selectedNamespace}
             onChange={(e) => setSelectedNamespace(e.target.value)}
             disabled={namespacesLoading || namespaces.length === 0}
-            helperText="Namespace used to load data-source providers (e.g. storage classes, monitoring configs)"
+            helperText="Namespace used to load data-source providers (e.g. storage classes)"
             sx={{ mb: 2, maxWidth: 360 }}
           >
             {namespaces.map((ns) => (

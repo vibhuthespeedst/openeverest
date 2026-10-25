@@ -22,9 +22,9 @@ type PreviewNamespace = {
   isLoading: boolean;
 };
 
-// Namespace context for the preview. Data-source providers (storage classes,
-// monitoring configs) only fetch when a namespace is set, so we let the
-// developer pick one and default to the first available.
+// Namespace context for the preview. Data-source providers (e.g. storage
+// classes) only fetch when a namespace is set, so we let the developer pick
+// one and default to the first available.
 export const usePreviewNamespace = (): PreviewNamespace => {
   const { data: namespaces = [], isLoading } = useNamespaces();
   const [selectedNamespace, setSelectedNamespace] = useState('');
