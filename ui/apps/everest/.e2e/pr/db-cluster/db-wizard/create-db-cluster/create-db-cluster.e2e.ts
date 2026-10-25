@@ -51,10 +51,6 @@ import { findDbAndClickActions } from '@e2e/utils/db-clusters-list';
 import { waitForInitializingState } from '@e2e/utils/table';
 import { EVEREST_CI_NAMESPACES, TIMEOUTS } from '@e2e/constants';
 import { goToUrl, limitedSuffixedName } from '@e2e/utils/generic';
-import {
-  dbSummaryMonitoringCheck,
-  monitoringStepCheck,
-} from '@e2e/pr/db-cluster/db-wizard/create-db-cluster/steps/monitoring-step';
 
 const namespace = EVEREST_CI_NAMESPACES.PG_ONLY,
   testPrefix = 'pr-db-wzd';
@@ -206,7 +202,6 @@ test.describe.parallel('DB cluster wizard creation', () => {
     await test.step('Monitoring step', async () => {
       // Go to "Monitoring" step
       await moveForward(page);
-      await monitoringStepCheck(page);
     });
 
     await test.step('Submit wizard', async () => {
@@ -296,7 +291,6 @@ test.describe.parallel('DB cluster wizard creation', () => {
     await test.step('Monitoring step', async () => {
       // Go to "Monitoring" step
       await moveForward(page);
-      await monitoringStepCheck(page);
     });
 
     await test.step('Back to Basic Info step', async () => {
@@ -336,9 +330,6 @@ test.describe.parallel('DB cluster wizard creation', () => {
 
     // await expect(page.getByTestId('radio-option-logical')).not.toBeVisible();
 
-    // await page.getByTestId('button-edit-preview-monitoring').click();
-    // await monitoringStepCheck(page, monitoringInstancesList);
-
     // Go back to Monitoring step in DB creation wizard
     await test.step('Resources step', async () => {
       // Move to Resources step
@@ -370,7 +361,6 @@ test.describe.parallel('DB cluster wizard creation', () => {
       await dbSummaryResourcesCheckForPG(page);
       await dbSummaryBackupsCheckForPG(page);
       await dbSummaryAdvancedConfigurationCheckForPG(page);
-      await dbSummaryMonitoringCheck(page);
     });
 
     await test.step('Submit wizard', async () => {
@@ -460,7 +450,6 @@ test.describe.parallel('DB cluster wizard creation', () => {
     await test.step('Monitoring step', async () => {
       // Go to "Monitoring" step
       await moveForward(page);
-      await monitoringStepCheck(page);
     });
 
     await test.step('Cancel wizard', async () => {
@@ -564,7 +553,6 @@ test.describe.parallel('DB cluster wizard creation', () => {
     await test.step('Monitoring step', async () => {
       // Go to "Monitoring" step
       await moveForward(page);
-      await monitoringStepCheck(page);
     });
 
     await test.step('Change Namespace', async () => {

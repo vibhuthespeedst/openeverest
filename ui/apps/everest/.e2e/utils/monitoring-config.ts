@@ -19,9 +19,6 @@ import { execSync } from 'child_process';
 import { getDBClientPod } from '@e2e/utils/db-cmd-line';
 import { getK8sUid } from '@e2e/utils/kubernetes';
 
-export const testMonitoringName = 'ui-test-monitoring';
-export const testMonitoringName2 = 'ui-test-monitoring-1';
-
 export const getPMMMajorVersion = async () => {
   try {
     const command = `kubectl get pods -l app.kubernetes.io/component=pmm-server -n everest-system -o jsonpath='{.items[0].spec.containers[0].image}' | cut -d':' -f2 | cut -d'.' -f1`;

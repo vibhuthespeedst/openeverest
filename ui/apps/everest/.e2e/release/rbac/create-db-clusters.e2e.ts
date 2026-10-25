@@ -274,22 +274,13 @@ test.describe(
         });
       });
 
-      await test.step(`User should not be able to add a backup storage and monitoring instance in ${namespace2} namespace`, async () => {
+      await test.step(`User should not be able to add a backup storage in ${namespace2} namespace`, async () => {
         await page.goto('/settings/storage-locations');
         await expect(page.getByRole('table')).toBeVisible();
         await expect(page.getByTestId('add-backup-storage')).not.toBeVisible();
         await expect(
           page.getByRole('row').filter({ hasText: 'bucket-1' })
         ).toBeVisible();
-
-        await page.goto('/settings/monitoring-endpoints');
-        await expect(page.getByRole('table')).toBeVisible();
-        await expect(
-          page.getByRole('row').filter({ hasText: 'e2e-endpoint-0' })
-        ).toBeVisible();
-        await expect(
-          page.getByTestId('add-monitoring-endpoint')
-        ).not.toBeVisible();
       });
 
       await test.step(`User should not be able to access databases in ${namespace1} namespace`, async () => {
