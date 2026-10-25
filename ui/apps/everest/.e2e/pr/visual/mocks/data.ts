@@ -14,7 +14,7 @@
 
 // Deterministic, pure fixtures for the visual-regression suite.
 //
-// NOTE ON TYPES: the src shared-types (e.g. `Instance`, `MonitoringConfigList`)
+// NOTE ON TYPES: the src shared-types (e.g. `Instance`, `InstanceList`)
 // live behind the `shared-types/*` path alias which is NOT exposed to the e2e
 // tsconfig (only `@generated/api-types`, `@e2e/*`, etc. are). The generated CRD
 // types also model `metadata` as an opaque `Record<string, never>`, which makes
@@ -163,39 +163,6 @@ export const mockInstanceConnection = {
 // Namespaces list: NamespaceList = string[] (see src/api/namespaces.ts +
 // useNamespaces which sorts the array as strings). Must include `default`.
 export const mockNamespaces = [DB_NAMESPACE];
-
-// MonitoringConfigList = { items: MonitoringConfig[] }.
-// Lifted verbatim from the proven inline fixture in visual-baseline.e2e.ts.
-export const mockMonitoringConfigs = {
-  apiVersion: 'monitoring.openeverest.io/v1alpha1',
-  kind: 'MonitoringConfigList',
-  items: [
-    {
-      apiVersion: 'monitoring.openeverest.io/v1alpha1',
-      kind: 'MonitoringConfig',
-      metadata: { name: 'pmm-prod', namespace: 'default' },
-      spec: {
-        type: 'pmm',
-        pmm: {
-          credentialsSecretRef: {
-            name: 'monitoring-config-pmm-prod-credentials',
-          },
-          url: 'http://monitoring.example.com',
-          verifyTLS: false,
-        },
-      },
-      status: { inUse: false, lastObservedGeneration: 1 },
-    },
-  ],
-};
-
-// Empty variant so the create-DB wizard monitoring step renders the
-// no-endpoint-available state deterministically.
-export const mockMonitoringConfigsEmpty = {
-  apiVersion: 'monitoring.openeverest.io/v1alpha1',
-  kind: 'MonitoringConfigList',
-  items: [] as (typeof mockMonitoringConfigs)['items'],
-};
 
 // BackupStorageList = { items: BackupStorage[] } (see src/api/backupStorage.ts).
 // Lifted verbatim from the proven inline fixture.

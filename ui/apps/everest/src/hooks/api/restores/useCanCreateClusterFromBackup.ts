@@ -17,7 +17,6 @@ import { useCanRestore } from './useCanRestore';
 
 interface CanCreateClusterFromBackupOptions {
   hasSchedules?: boolean;
-  monitoringEnabled?: boolean;
 }
 
 // A user may clone an instance into a new database (restore-to-new-DB) when they
@@ -29,7 +28,7 @@ export const useCanCreateClusterFromBackup = (
   instanceName: string,
   options: CanCreateClusterFromBackupOptions = {}
 ) => {
-  const { hasSchedules = false, monitoringEnabled = false } = options;
+  const { hasSchedules = false } = options;
   const canRestore = useCanRestore(namespace, instanceName);
   const { canCreate: canCreateClusters } = useRBACPermissions(
     'instances',
@@ -39,18 +38,10 @@ export const useCanCreateClusterFromBackup = (
     'backups',
     `${namespace}/${instanceName}`
   );
-  const { canRead: canReadMonitoring } = useRBACPermissions(
-    'monitoring-configs',
-    `${namespace}/${instanceName}`
-  );
 
   let canCreateClusterFromBackup = canRestore && canCreateClusters;
   if (hasSchedules) {
     canCreateClusterFromBackup = canCreateClusterFromBackup && canCreateBackups;
-  }
-  if (monitoringEnabled) {
-    canCreateClusterFromBackup =
-      canCreateClusterFromBackup && canReadMonitoring;
   }
 
   return canCreateClusterFromBackup;

@@ -15,14 +15,12 @@
 // limitations under the License.
 export enum SettingsTabs {
   storageLocations = 'storage-locations',
-  monitoringEndpoints = 'monitoring-endpoints',
   namespaces = 'namespaces',
   // policies = 'policies',
 }
 
 export const settingsTabsMui: Record<SettingsTabs, number> = {
   [SettingsTabs.storageLocations]: 1,
-  [SettingsTabs.monitoringEndpoints]: 2,
-  [SettingsTabs.namespaces]: 3,
-  // [SettingsTabs.policies]: 4,
+  [SettingsTabs.namespaces]: 2,
+  // [SettingsTabs.policies]: 3,
 };

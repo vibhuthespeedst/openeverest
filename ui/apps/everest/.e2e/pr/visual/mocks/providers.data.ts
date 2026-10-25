@@ -74,19 +74,6 @@ export const mockProviders: any = {
               },
             ],
           },
-          pmm: {
-            defaultVersion: '3.7.0',
-            versions: [
-              {
-                version: '2.44.1',
-                image: 'percona/pmm-client:2.44.1',
-              },
-              {
-                version: '3.7.0',
-                image: 'percona/pmm-client:3.7.0',
-              },
-            ],
-          },
         },
         components: {
           backupAgent: {
@@ -97,9 +84,6 @@ export const mockProviders: any = {
           },
           engine: {
             type: 'mongod',
-          },
-          monitoring: {
-            type: 'pmm',
           },
           proxy: {
             type: 'mongod',
@@ -112,9 +96,6 @@ export const mockProviders: any = {
                 optional: true,
               },
               engine: {},
-              monitoring: {
-                optional: true,
-              },
             },
           },
           sharded: {
@@ -124,9 +105,6 @@ export const mockProviders: any = {
               },
               configServer: {},
               engine: {},
-              monitoring: {
-                optional: true,
-              },
               proxy: {},
             },
             parametersSchema: {
@@ -150,7 +128,6 @@ export const mockProviders: any = {
               backupAgent: '2.12.0',
               configServer: '8.0.12-4',
               engine: '8.0.12-4',
-              monitoring: '3.7.0',
               proxy: '8.0.12-4',
             },
           },
@@ -160,7 +137,6 @@ export const mockProviders: any = {
               backupAgent: '2.12.0',
               configServer: '8.0.8-3',
               engine: '8.0.8-3',
-              monitoring: '3.7.0',
               proxy: '8.0.8-3',
             },
           },
@@ -170,7 +146,6 @@ export const mockProviders: any = {
               backupAgent: '2.12.0',
               configServer: '8.0.4-1',
               engine: '8.0.4-1',
-              monitoring: '3.7.0',
               proxy: '8.0.4-1',
             },
           },
@@ -180,7 +155,6 @@ export const mockProviders: any = {
               backupAgent: '2.12.0',
               configServer: '7.0.18-11',
               engine: '7.0.18-11',
-              monitoring: '3.7.0',
               proxy: '7.0.18-11',
             },
           },
@@ -190,7 +164,6 @@ export const mockProviders: any = {
               backupAgent: '2.12.0',
               configServer: '6.0.21-18',
               engine: '6.0.21-18',
-              monitoring: '3.7.0',
               proxy: '6.0.21-18',
             },
           },
@@ -200,7 +173,6 @@ export const mockProviders: any = {
               backupAgent: '2.12.0',
               configServer: '6.0.19-16',
               engine: '6.0.19-16',
-              monitoring: '3.7.0',
               proxy: '6.0.19-16',
             },
           },
@@ -299,23 +271,6 @@ export const mockProviders: any = {
                 description:
                   'Provide the information about the database version you want to use.',
                 label: 'Database Version',
-              },
-              monitoring: {
-                components: {
-                  monitoring: {
-                    dataSource: {
-                      provider: 'monitoringConfigs',
-                    },
-                    fieldParams: {
-                      label: 'Monitoring endpoint',
-                    },
-                    path: 'spec.components.monitoring.parameters.monitoringConfigName',
-                    uiType: 'select',
-                  },
-                },
-                description:
-                  'Monitor the health of your database to detect issues quickly and improve its performance.',
-                label: 'Monitoring',
               },
               resources: {
                 components: {
@@ -422,12 +377,7 @@ export const mockProviders: any = {
                 label: 'Resources',
               },
             },
-            sectionsOrder: [
-              'databaseVersion',
-              'resources',
-              'monitoring',
-              'advanced',
-            ],
+            sectionsOrder: ['databaseVersion', 'resources', 'advanced'],
           },
           sharded: {
             sections: {
@@ -522,23 +472,6 @@ export const mockProviders: any = {
                 description:
                   'Provide the information about the database version you want to use.',
                 label: 'Database Version',
-              },
-              monitoring: {
-                components: {
-                  monitoring: {
-                    dataSource: {
-                      provider: 'monitoringConfigs',
-                    },
-                    fieldParams: {
-                      label: 'Monitoring endpoint',
-                    },
-                    path: 'spec.components.monitoring.parameters.monitoringConfigName',
-                    uiType: 'select',
-                  },
-                },
-                description:
-                  'Monitor the health of your database to detect issues quickly and improve its performance.',
-                label: 'Monitoring',
               },
               resources: {
                 components: {
@@ -757,12 +690,7 @@ export const mockProviders: any = {
                 label: 'Resources',
               },
             },
-            sectionsOrder: [
-              'databaseVersion',
-              'resources',
-              'monitoring',
-              'advanced',
-            ],
+            sectionsOrder: ['databaseVersion', 'resources', 'advanced'],
           },
         },
       },

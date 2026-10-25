@@ -32,8 +32,6 @@ import {
   mockInstancesListEmpty,
   mockInstanceConnection,
   mockNamespaces,
-  mockMonitoringConfigs,
-  mockMonitoringConfigsEmpty,
   mockBackupStorages,
   mockBackups,
   mockBackupClasses,
@@ -95,17 +93,6 @@ export const mockNamespacesRoute = (page: Page) =>
   page.route(/\/clusters\/[^/]+\/namespaces$/, (route) =>
     route.fulfill(json(mockNamespaces))
   );
-
-// GET clusters/main/namespaces/{ns}/monitoring-configs -> MonitoringConfigList
-export const mockMonitoringConfigsRoute = (
-  page: Page,
-  payload = mockMonitoringConfigs
-) =>
-  page.route(/\/monitoring-configs$/, (route) => route.fulfill(json(payload)));
-
-// Variant: monitoring-configs with no endpoints (no-endpoint-available state).
-export const mockMonitoringConfigsEmptyRoute = (page: Page) =>
-  mockMonitoringConfigsRoute(page, mockMonitoringConfigsEmpty);
 
 // GET clusters/main/namespaces/{ns}/backup-storages -> BackupStorageList
 export const mockBackupStoragesRoute = (page: Page) =>
@@ -202,7 +189,6 @@ export const installVisualMocks = async (page: Page) => {
   await mockInstancesListRoute(page);
   await mockInstanceDetail(page);
   await mockInstanceConnectionRoute(page);
-  await mockMonitoringConfigsRoute(page);
   await mockBackupStoragesRoute(page);
   await mockBackupsRoute(page);
   await mockBackupClassesRoute(page);

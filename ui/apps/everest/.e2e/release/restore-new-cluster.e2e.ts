@@ -84,7 +84,6 @@ function getNextScheduleMinute(incrementMinutes: number): string {
 
       let storageClasses = [];
       const namespace = EVEREST_CI_NAMESPACES.EVEREST_UI;
-      const monitoringName = 'e2e-endpoint-0';
 
       test.beforeAll(async ({ request }) => {
         token = await getCITokenFromLocalStorage();
@@ -178,28 +177,11 @@ function getNextScheduleMinute(incrementMinutes: number): string {
           await moveForward(page);
         });
 
-        await test.step('Populate monitoring', async () => {
-          if (db !== 'pxc') {
-            await page.getByTestId('switch-input-monitoring').click();
-            await page
-              .getByTestId('text-input-monitoring-instance')
-              .fill(monitoringName);
-            await expect(
-              page.getByTestId('text-input-monitoring-instance')
-            ).toHaveValue(monitoringName);
-          } else {
-            const proxyHeading = page.getByRole('heading', { name: 'Proxy' });
-            const monitoringPreview = page.getByText(
-              `Monitoring endpoint: ${monitoringName}`
-            );
-
-            if (await proxyHeading.isVisible().catch(() => false)) {
-              await expect(proxyHeading).toBeVisible();
-            } else {
-              await expect(monitoringPreview).toBeVisible();
-            }
-            await moveForward(page);
-          }
+        await test.step('Pass the proxy step', async () => {
+          await expect(
+            page.getByRole('heading', { name: 'Proxy' })
+          ).toBeVisible();
+          await moveForward(page);
         });
 
         await test.step('Populate advanced db config', async () => {

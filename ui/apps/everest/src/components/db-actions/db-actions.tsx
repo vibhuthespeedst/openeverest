@@ -46,28 +46,6 @@ import { useCanCreateClusterFromBackup } from 'hooks/api/restores/useCanCreateCl
 import { useClusterName } from 'hooks/api/useClusterName';
 import { BackupStatus } from 'shared-types/backups.types';
 
-const hasMonitoringConfigName = (instance: unknown): boolean => {
-  if (typeof instance !== 'object' || instance === null) {
-    return false;
-  }
-
-  const spec = Reflect.get(instance, 'spec');
-  if (typeof spec !== 'object' || spec === null) {
-    return false;
-  }
-
-  const monitoring = Reflect.get(spec, 'monitoring');
-  if (typeof monitoring !== 'object' || monitoring === null) {
-    return false;
-  }
-
-  const monitoringConfigName = Reflect.get(monitoring, 'monitoringConfigName');
-  return (
-    typeof monitoringConfigName === 'string' &&
-    monitoringConfigName.trim().length > 0
-  );
-};
-
 export const DbActions = ({
   // showDetailsAction = false,
   showStatusActions = false,
@@ -118,7 +96,6 @@ export const DbActions = ({
   const hasSchedules = !!dbInstance.spec?.backup?.storages?.some(
     (storage) => !!storage.schedules?.length
   );
-  const monitoringEnabled = hasMonitoringConfigName(dbInstance);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setAnchorEl(event.currentTarget);
@@ -136,7 +113,7 @@ export const DbActions = ({
   const canCreateClusterFromBackup = useCanCreateClusterFromBackup(
     namespace,
     dbInstanceName ?? '',
-    { hasSchedules, monitoringEnabled }
+    { hasSchedules }
   );
 
   // const canRestore = canCreateRestore && canReadCredentials;

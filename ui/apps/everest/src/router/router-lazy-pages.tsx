@@ -64,14 +64,6 @@ export const StorageLocations = lazy(() =>
   )
 );
 
-export const MonitoringEndpoints = lazy(() =>
-  import('pages/settings/monitoring-endpoints/monitoring-endpoints').then(
-    (module) => ({
-      default: module.MonitoringEndpoints,
-    })
-  )
-);
-
 export const NoMatch = lazy(() =>
   import('pages/404/NoMatch').then((module) => ({
     default: module.NoMatch,
