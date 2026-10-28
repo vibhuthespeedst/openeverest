@@ -72,7 +72,8 @@ const V2_NAMESPACED_RESOURCES: string[] = [
   'backup-imports',
   'restores',
   'backup-storages',
-  'monitoring-configs',
+  'monitoring-destinations',
+  'monitoring-bindings',
   'config-maps',
   'secrets',
 ];
@@ -80,6 +81,7 @@ const V2_CLUSTER_RESOURCES: string[] = [
   'namespaces',
   'providers',
   'backup-classes',
+  'monitoring-classes',
   'plugins',
 ];
 
